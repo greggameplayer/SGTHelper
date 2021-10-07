@@ -2,11 +2,44 @@ import numpy as np
 import cv2
 from win10toast import ToastNotifier
 import time
+from tkinter import *
+import subprocess
+
+
+window = Tk()
+
+window.title("SGT Helper")
+window.geometry("1080x720")
+window.minsize(480,360)
+window.config(background='#f4f6c8')
+
+
+label_title = Label(window, text="Bienvenue sur SGT Helper", font=("Courrier",40), bg='#f4f6c8', fg='#101f7a')
+label_title.pack()
+
+label_subtitle = Label(window, text="Voici les fonctionnalité a savoir pour utiliser l'application :", font=("Courrier",30), bg='#f4f6c8', fg='#101f7a')
+label_subtitle.pack()
+
+label_subtitle = Label(window, text="- Appuyer sur la touche A pour activé l'application", font=("Courrier",20), bg='#f4f6c8', fg='#101f7a')
+label_subtitle.pack()
+
+label_subtitle = Label(window, text="- Appuyer sur la touche E pour éteindre l'application", font=("Courrier",20), bg='#f4f6c8', fg='#101f7a')
+label_subtitle.pack()
+
+label_subtitle = Label(window, text="- Au bout de 8 clignement de yeux, l'application s'eteindra au bout de 5 secondes", font=("Courrier",20), bg='#f4f6c8', fg='#101f7a')
+label_subtitle.pack()
+
+label_subtitle = Label(window, text="si vous ne voulez pas que l'application s'éteigne appuyé sur la touche B ", font=("Courrier",20), bg='#f4f6c8', fg='#101f7a')
+label_subtitle.pack()
+
+window.mainloop()  
+
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-  
+
 first_read = True
+  
 count=0
 
 cap = cv2.VideoCapture(0) 
@@ -70,6 +103,5 @@ while(ret):
         "La caméra va s'éteindre",
         duration=10)
         break
-  
-cap.release() 
+cap.release()
 cv2.destroyAllWindows() 
